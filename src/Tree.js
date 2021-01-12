@@ -16,6 +16,7 @@ export class TreeNode {
     this.parent = null
     this.children = null
     this.isLeaf = !!isLeaf
+    data.originalName = data.name
 
     // other params
     for (var k in data) {
@@ -26,7 +27,11 @@ export class TreeNode {
   }
 
   changeName(name) {
-    this.name = name
+    // console.log(name)
+    if (name.startsWith(this.originalName)) {
+      this.name = name
+    }
+    // this.name = name
   }
 
   addChildren(children) {

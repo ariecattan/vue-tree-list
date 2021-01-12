@@ -53,7 +53,6 @@
           type="text"
           ref="nodeInput"
           :value="model.name"
-          @input="updateName"
           @blur="setUnEditable"
         />
         <div class="vtl-operation" v-show="isHover">
