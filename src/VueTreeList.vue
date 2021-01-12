@@ -53,6 +53,7 @@
           type="text"
           ref="nodeInput"
           :value="model.name"
+          @input="startInput"
           @blur="setUnEditable"
         />
         <div class="vtl-operation" v-show="isHover">
@@ -227,6 +228,13 @@ export default {
     removeHandler(window, 'keyup')
   },
   methods: {
+    startInput() {
+      // console.log('Start input..')
+      this.rootNode.$emit('start-input', {
+        target: this.model
+      })
+    },
+
     updateName(e) {
       var oldName = this.model.name
       this.model.changeName(e.target.value)
@@ -253,7 +261,7 @@ export default {
 
     setUnEditable(e) {
       this.editable = false
-      var oldName = this.model.name
+      var oldName = this.model.originalName
       this.model.changeName(e.target.value)
       this.rootNode.$emit('change-name', {
         id: this.model.id,
