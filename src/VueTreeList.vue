@@ -50,9 +50,12 @@
         <input
           v-else
           class="vtl-input"
+          size="75"
           type="text"
           ref="nodeInput"
           :value="model.name"
+          @focus="startFocus"
+          @click="startInput"
           @input="startInput"
           @blur="setUnEditable"
         />
@@ -231,6 +234,12 @@ export default {
     startInput() {
       // console.log('Start input..')
       this.rootNode.$emit('start-input', {
+        target: this.model
+      })
+    },
+
+    startFocus() {
+      this.rootNode.$emit('start-focus', {
         target: this.model
       })
     },
@@ -470,11 +479,11 @@ export default {
   display: flex;
   align-items: center;
   padding: 5px 0 5px 1rem;
-  .vtl-input {
-    border: none;
-    max-width: 150px;
-    border-bottom: 1px solid blue;
-  }
+  // .vtl-input {
+  //   border: none;
+  //   max-width: 150px;
+  //   border-bottom: 1px solid rgb(69, 69, 70);
+  // }
   &:hover {
     background-color: #f0f0f0;
   }
